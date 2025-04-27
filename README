@@ -1,5 +1,64 @@
-In this competition, you must create an algorithm to identify metastatic cancer in small image patches taken from larger digital pathology scans. The data for this competition is a slightly modified version of the PatchCamelyon (PCam) benchmark dataset (the original PCam dataset contains duplicate images due to its probabilistic sampling, however, the version presented on Kaggle does not contain duplicates).
+# Histopathologic Cancer Detection using Keras
 
-PCam is highly interesting for both its size, simplicity to get started on, and approachability. In the authors' words:
+This project focuses on building a deep learning model to detect cancerous tissue in histopathology images. By leveraging Convolutional Neural Networks (CNNs) and Keras, the model classifies small tissue image patches as either containing metastatic cancer or being normal.
 
-[PCam] packs the clinically-relevant task of metastasis detection into a straight-forward binary image classification task, akin to CIFAR-10 and MNIST. Models can easily be trained on a single GPU in a couple hours, and achieve competitive scores in the Camelyon16 tasks of tumor detection and whole-slide image diagnosis. Furthermore, the balance between task-difficulty and tractability makes it a prime suspect for fundamental machine learning research on topics as active learning, model uncertainty, and explainability.
+This work can help in automating the detection of cancerous cells and supporting medical experts with faster, more reliable diagnoses.
+
+
+## Project Overview
+
+Histopathology involves the microscopic examination of tissue samples to detect diseases like cancer. Manual analysis is time-consuming and prone to human error. 
+
+This project automates cancer detection by:
+- Preprocessing medical image data
+- Building and training a deep learning CNN
+- Evaluating the model’s ability to classify tissue images
+- Making predictions on new, unseen data
+
+The notebook (`histopathologic-detection-with-keras.ipynb`) walks through the complete machine learning pipeline.
+
+## Dataset
+
+The dataset consists of:
+- **Images:** Small patches (96x96 pixels) of histopathologic scans
+- **Labels:** 
+  - `1` if the image contains metastatic tissue
+  - `0` otherwise
+
+Each image file name corresponds to an entry in a CSV file containing the labels.
+
+Example:
+
+| id | label |
+|----|-------|
+| f38a6374c348f90b587e046aac607995 | 0 |
+| c38fb3aa5181c7803650b4d15f0053c3 | 1 |
+
+*(Dataset Source: [Kaggle - Histopathologic Cancer Detection Challenge](https://www.kaggle.com/c/histopathologic-cancer-detection))*
+
+## Features
+
+- **Data Loading and Preprocessing:**
+  - Loading images into memory
+  - Normalizing pixel values (scaling between 0 and 1)
+  - Data augmentation (horizontal/vertical flips, rotations) to improve generalization
+
+- **Model Building:**
+  - Custom CNN architectures using Keras
+  - Transfer learning with pre-trained models (optional)
+
+- **Training Setup:**
+  - Data split into training, validation, and test sets
+  - EarlyStopping and ModelCheckpoint callbacks to optimize training
+
+- **Evaluation:**
+  - Accuracy, precision, recall, F1-score
+  - ROC-AUC curve analysis
+
+- **Visualization:**
+  - Training and validation loss/accuracy curves
+  - Confusion matrix
+
+## Results
+
+The best model achieved an accuracy score of 85% according to Kaggle 
